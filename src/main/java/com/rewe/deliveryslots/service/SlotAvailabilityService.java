@@ -12,4 +12,9 @@ public class SlotAvailabilityService {
             this.repository = repository;
         }
 
+
+    // adjusted 1
+    private boolean isUsable1(Slot slot) {
+        return slot.getRemainingCapacity() > 0;
+    }
 }
