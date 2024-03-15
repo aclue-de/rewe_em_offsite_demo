@@ -17,4 +17,9 @@ public class SlotAvailabilityService {
     private boolean isUsable1(Slot slot) {
         return slot.getRemainingCapacity() > 0;
     }
+
+    // adjusted 2
+    private boolean isUsable2(Slot slot) {
+        return slot.getRemainingCapacity() > 0;
+    }
 }
