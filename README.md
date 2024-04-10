@@ -23,3 +23,4 @@ Ticket references in commit messages point at the Jira project `DS`.
 ## Rules worth knowing
 
 - A slot belongs to exactly one warehouse and one day.
+- Slots close for new orders at their cutoff time; the cutoff is held per warehouse, not per zone.
