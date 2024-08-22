@@ -24,3 +24,4 @@ Ticket references in commit messages point at the Jira project `DS`.
 
 - A slot belongs to exactly one warehouse and one day.
 - Slots close for new orders at their cutoff time; the cutoff is held per warehouse, not per zone.
+- Capacity is counted in orders, not in items. A slot with remaining capacity 0 is full even if the van is not.
