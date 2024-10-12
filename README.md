@@ -26,3 +26,4 @@ Ticket references in commit messages point at the Jira project `DS`.
 - Slots close for new orders at their cutoff time; the cutoff is held per warehouse, not per zone.
 - Capacity is counted in orders, not in items. A slot with remaining capacity 0 is full even if the van is not.
 - Express slots use the same model with a shorter lead time.
+- Cancelling an order releases capacity back to the slot it was booked in.
