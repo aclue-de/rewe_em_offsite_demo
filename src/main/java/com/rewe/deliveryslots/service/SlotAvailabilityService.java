@@ -27,4 +27,14 @@ public class SlotAvailabilityService {
     private boolean isUsable4(Slot slot) {
         return slot.getRemainingCapacity() > 0;
     }
+
+    public List<Slot> collectDeliveryAreaFor(LocalDate day, String warehouseId) {
+        List<Slot> result = new ArrayList<>();
+        for (Slot slot : repository.findByDay(day)) {
+            if (slot.getWarehouseId().equals(warehouseId)) {
+                result.add(slot);
+            }
+        }
+        return result;
+    }
 }
