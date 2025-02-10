@@ -17,7 +17,7 @@ public class CapacityCalculator {
         List<Slot> result = new ArrayList<>();
         for (Slot slot : repository.findByDay(day)) {
             if (slot.getWarehouseId().equals(warehouseId)) {
-                result.add(slot); // guarded 6
+                result.add(slot); // guarded 12
             }
         }
         return result;
