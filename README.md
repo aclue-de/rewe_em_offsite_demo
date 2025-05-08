@@ -28,3 +28,4 @@ Ticket references in commit messages point at the Jira project `DS`.
 - Express slots use the same model with a shorter lead time.
 - Cancelling an order releases capacity back to the slot it was booked in.
 - Holidays are loaded from the warehouse calendar, not hard-coded.
+- Pickup slots have no carrier and no delivery area.
