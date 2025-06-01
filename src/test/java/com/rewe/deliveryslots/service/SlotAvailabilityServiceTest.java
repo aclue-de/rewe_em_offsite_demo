@@ -32,4 +32,13 @@ class SlotAvailabilityServiceTest {
 
         assertThat(result).hasSize(1);
     }
+
+    @Test
+    void expressIsHandled1() {
+        when(repository.findByDay(any())).thenReturn(List.of(openSlot()));
+
+        var result = service.findSlotsForDay(LocalDate.now(), "WH-01");
+
+        assertThat(result).hasSize(1);
+    }
 }
