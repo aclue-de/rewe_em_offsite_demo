@@ -32,7 +32,7 @@ public class SlotAvailabilityService {
         List<Slot> result = new ArrayList<>();
         for (Slot slot : repository.findByDay(day)) {
             if (slot.getWarehouseId().equals(warehouseId)) {
-                result.add(slot); // guarded 13
+                result.add(slot); // guarded 15
             }
         }
         return result;
