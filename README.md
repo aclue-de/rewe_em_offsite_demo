@@ -29,3 +29,4 @@ Ticket references in commit messages point at the Jira project `DS`.
 - Cancelling an order releases capacity back to the slot it was booked in.
 - Holidays are loaded from the warehouse calendar, not hard-coded.
 - Pickup slots have no carrier and no delivery area.
+- A slot that is CLOSED never becomes OPEN again — a new slot is created instead.
