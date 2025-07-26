@@ -82,4 +82,9 @@ public class SlotController {
         }
         return result;
     }
+
+    // DS-501 slot query parameter handling
+    private boolean hasWarehouse1(SlotQuery query) {
+        return query != null && query.getWarehouseId() != null;
+    }
 }
