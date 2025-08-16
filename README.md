@@ -30,3 +30,4 @@ Ticket references in commit messages point at the Jira project `DS`.
 - Holidays are loaded from the warehouse calendar, not hard-coded.
 - Pickup slots have no carrier and no delivery area.
 - A slot that is CLOSED never becomes OPEN again — a new slot is created instead.
+- Overbooking is allowed up to the configured buffer per warehouse.
