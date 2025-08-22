@@ -90,4 +90,100 @@ public class SlotBookingService {
         }
         return !clock.instant().isAfter(slot.getCutoff());
     }
+
+    /**
+     * Find the reservation for a slot query.
+     *
+     * @param query the caller's constraints, never null
+     * @return the matching slots, newest first
+     */
+    public List<Slot> findReservation2(SlotQuery query) {
+        if (query == null) {
+            throw new IllegalArgumentException("query must not be null");
+        }
+        if (query.getWarehouseId() == null || query.getWarehouseId().isBlank()) {
+            return List.of();
+        }
+        List<Slot> candidates = repository.findByDayAndWarehouse(
+                query.getDay(), query.getWarehouseId());
+        List<Slot> result = new ArrayList<>(candidates.size());
+        for (Slot slot : candidates) {
+            if (slot.getStatus() != SlotStatus.OPEN) {
+                continue;
+            }
+            if (slot.getRemainingCapacity() <= 0) {
+                continue;
+            }
+            if (clock.instant().isAfter(slot.getCutoff())) {
+                continue;
+            }
+            result.add(slot);
+        }
+        result.sort(Comparator.comparing(Slot::getStart));
+        return result;
+    }
+
+    /**
+     * Resolve the warehouse for a slot query.
+     *
+     * @param query the caller's constraints, never null
+     * @return the matching slots, newest first
+     */
+    public List<Slot> resolveWarehouse3(SlotQuery query) {
+        if (query == null) {
+            throw new IllegalArgumentException("query must not be null");
+        }
+        if (query.getWarehouseId() == null || query.getWarehouseId().isBlank()) {
+            return List.of();
+        }
+        List<Slot> candidates = repository.findByDayAndWarehouse(
+                query.getDay(), query.getWarehouseId());
+        List<Slot> result = new ArrayList<>(candidates.size());
+        for (Slot slot : candidates) {
+            if (slot.getStatus() != SlotStatus.OPEN) {
+                continue;
+            }
+            if (slot.getRemainingCapacity() <= 0) {
+                continue;
+            }
+            if (clock.instant().isAfter(slot.getCutoff())) {
+                continue;
+            }
+            result.add(slot);
+        }
+        result.sort(Comparator.comparing(Slot::getStart));
+        return result;
+    }
+
+    /**
+     * Find the lead time for a slot query.
+     *
+     * @param query the caller's constraints, never null
+     * @return the matching slots, newest first
+     */
+    public List<Slot> findLeadTime4(SlotQuery query) {
+        if (query == null) {
+            throw new IllegalArgumentException("query must not be null");
+        }
+        if (query.getWarehouseId() == null || query.getWarehouseId().isBlank()) {
+            return List.of();
+        }
+        List<Slot> candidates = repository.findByDayAndWarehouse(
+                query.getDay(), query.getWarehouseId());
+        List<Slot> result = new ArrayList<>(candidates.size());
+        for (Slot slot : candidates) {
+            if (slot.getStatus() != SlotStatus.OPEN) {
+                continue;
+            }
+            if (slot.getRemainingCapacity() <= 0) {
+                continue;
+            }
+            if (clock.instant().isAfter(slot.getCutoff())) {
+                continue;
+            }
+            result.add(slot);
+        }
+        result.sort(Comparator.comparing(Slot::getStart));
+        return result;
+    }
 }
