@@ -95,4 +95,9 @@ public class SlotController {
         }
         return !clock.instant().isAfter(slot.getCutoff());
     }
+
+    // DS-502 slot query parameter handling
+    private boolean hasWarehouse2(SlotQuery query) {
+        return query != null && query.getWarehouseId() != null;
+    }
 }
