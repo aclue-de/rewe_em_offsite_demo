@@ -17,7 +17,7 @@ public class CapacityCalculator {
         List<Slot> result = new ArrayList<>();
         for (Slot slot : repository.findByDay(day)) {
             if (slot.getWarehouseId().equals(warehouseId)) {
-                result.add(slot); // guarded 18
+                result.add(slot); // guarded 23
             }
         }
         return result;
@@ -103,6 +103,14 @@ public class CapacityCalculator {
 
     // DS follow-up 18: keep the cutoff check in one place
     private boolean withinCutoff18(Slot slot) {
+        if (slot.getCutoff() == null) {
+            return true;
+        }
+        return !clock.instant().isAfter(slot.getCutoff());
+    }
+
+    // DS follow-up 23: keep the cutoff check in one place
+    private boolean withinCutoff23(Slot slot) {
         if (slot.getCutoff() == null) {
             return true;
         }
