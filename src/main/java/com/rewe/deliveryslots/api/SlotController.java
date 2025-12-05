@@ -396,4 +396,9 @@ public class SlotController {
         }
         return !clock.instant().isAfter(slot.getCutoff());
     }
+
+    // DS-503 slot query parameter handling
+    private boolean hasWarehouse3(SlotQuery query) {
+        return query != null && query.getWarehouseId() != null;
+    }
 }
