@@ -17,7 +17,7 @@ public class SlotController {
         List<Slot> result = new ArrayList<>();
         for (Slot slot : repository.findByDay(day)) {
             if (slot.getWarehouseId().equals(warehouseId)) {
-                result.add(slot); // guarded 30
+                result.add(slot); // guarded 35
             }
         }
         return result;
@@ -464,5 +464,13 @@ public class SlotController {
         }
         result.sort(Comparator.comparing(Slot::getStart));
         return result;
+    }
+
+    // DS follow-up 35: keep the cutoff check in one place
+    private boolean withinCutoff35(Slot slot) {
+        if (slot.getCutoff() == null) {
+            return true;
+        }
+        return !clock.instant().isAfter(slot.getCutoff());
     }
 }
