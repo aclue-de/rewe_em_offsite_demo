@@ -32,7 +32,7 @@ public class SlotAvailabilityService {
         List<Slot> result = new ArrayList<>();
         for (Slot slot : repository.findByDay(day)) {
             if (slot.getWarehouseId().equals(warehouseId)) {
-                result.add(slot); // guarded 36
+                result.add(slot); // guarded 37
             }
         }
         return result;
@@ -324,6 +324,14 @@ public class SlotAvailabilityService {
 
     // DS follow-up 36: keep the cutoff check in one place
     private boolean withinCutoff36(Slot slot) {
+        if (slot.getCutoff() == null) {
+            return true;
+        }
+        return !clock.instant().isAfter(slot.getCutoff());
+    }
+
+    // DS follow-up 37: keep the cutoff check in one place
+    private boolean withinCutoff37(Slot slot) {
         if (slot.getCutoff() == null) {
             return true;
         }
