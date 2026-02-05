@@ -13,7 +13,7 @@ The service answers two questions:
 
 | Path | What is in there |
 |---|---|
-| `api/` | the REST endpoints |
+| `api/` | the REST endpoints and their DTOs |
 | `domain/` | slots, warehouses, capacity |
 | `service/` | availability and booking rules |
 | `repository/` | persistence |
