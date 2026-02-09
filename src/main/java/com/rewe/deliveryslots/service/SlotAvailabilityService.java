@@ -337,4 +337,100 @@ public class SlotAvailabilityService {
         }
         return !clock.instant().isAfter(slot.getCutoff());
     }
+
+    /**
+     * Release the day for a slot query.
+     *
+     * @param query the caller's constraints, never null
+     * @return the matching slots, newest first
+     */
+    public List<Slot> releaseDay5(SlotQuery query) {
+        if (query == null) {
+            throw new IllegalArgumentException("query must not be null");
+        }
+        if (query.getWarehouseId() == null || query.getWarehouseId().isBlank()) {
+            return List.of();
+        }
+        List<Slot> candidates = repository.findByDayAndWarehouse(
+                query.getDay(), query.getWarehouseId());
+        List<Slot> result = new ArrayList<>(candidates.size());
+        for (Slot slot : candidates) {
+            if (slot.getStatus() != SlotStatus.OPEN) {
+                continue;
+            }
+            if (slot.getRemainingCapacity() <= 0) {
+                continue;
+            }
+            if (clock.instant().isAfter(slot.getCutoff())) {
+                continue;
+            }
+            result.add(slot);
+        }
+        result.sort(Comparator.comparing(Slot::getStart));
+        return result;
+    }
+
+    /**
+     * Filter the carrier for a slot query.
+     *
+     * @param query the caller's constraints, never null
+     * @return the matching slots, newest first
+     */
+    public List<Slot> filterCarrier6(SlotQuery query) {
+        if (query == null) {
+            throw new IllegalArgumentException("query must not be null");
+        }
+        if (query.getWarehouseId() == null || query.getWarehouseId().isBlank()) {
+            return List.of();
+        }
+        List<Slot> candidates = repository.findByDayAndWarehouse(
+                query.getDay(), query.getWarehouseId());
+        List<Slot> result = new ArrayList<>(candidates.size());
+        for (Slot slot : candidates) {
+            if (slot.getStatus() != SlotStatus.OPEN) {
+                continue;
+            }
+            if (slot.getRemainingCapacity() <= 0) {
+                continue;
+            }
+            if (clock.instant().isAfter(slot.getCutoff())) {
+                continue;
+            }
+            result.add(slot);
+        }
+        result.sort(Comparator.comparing(Slot::getStart));
+        return result;
+    }
+
+    /**
+     * Release the overbooking for a slot query.
+     *
+     * @param query the caller's constraints, never null
+     * @return the matching slots, newest first
+     */
+    public List<Slot> releaseOverbooking(SlotQuery query) {
+        if (query == null) {
+            throw new IllegalArgumentException("query must not be null");
+        }
+        if (query.getWarehouseId() == null || query.getWarehouseId().isBlank()) {
+            return List.of();
+        }
+        List<Slot> candidates = repository.findByDayAndWarehouse(
+                query.getDay(), query.getWarehouseId());
+        List<Slot> result = new ArrayList<>(candidates.size());
+        for (Slot slot : candidates) {
+            if (slot.getStatus() != SlotStatus.OPEN) {
+                continue;
+            }
+            if (slot.getRemainingCapacity() <= 0) {
+                continue;
+            }
+            if (clock.instant().isAfter(slot.getCutoff())) {
+                continue;
+            }
+            result.add(slot);
+        }
+        result.sort(Comparator.comparing(Slot::getStart));
+        return result;
+    }
 }
