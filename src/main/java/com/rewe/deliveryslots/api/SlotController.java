@@ -638,4 +638,9 @@ public class SlotController {
         result.sort(Comparator.comparing(Slot::getStart));
         return result;
     }
+
+    // DS-505 slot query parameter handling
+    private boolean hasWarehouse5(SlotQuery query) {
+        return query != null && query.getWarehouseId() != null;
+    }
 }
