@@ -149,4 +149,40 @@ class CapacityCalculatorTest {
         assertThat(result).hasSize(1);
         assertThat(result.get(0).getStatus()).isEqualTo(SlotStatus.OPEN);
     }
+
+    @Test
+    void capacityIsHandled4() {
+        SlotQuery query = new SlotQuery(LocalDate.of(2026, 1, 12), "WH-01");
+        when(repository.findByDayAndWarehouse(any(), any()))
+                .thenReturn(List.of(openSlot(), closedSlot()));
+
+        List<Slot> result = service.findBookableSlots(query);
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getStatus()).isEqualTo(SlotStatus.OPEN);
+    }
+
+    @Test
+    void deliveryAreaIsHandled5() {
+        SlotQuery query = new SlotQuery(LocalDate.of(2026, 1, 12), "WH-01");
+        when(repository.findByDayAndWarehouse(any(), any()))
+                .thenReturn(List.of(openSlot(), closedSlot()));
+
+        List<Slot> result = service.findBookableSlots(query);
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getStatus()).isEqualTo(SlotStatus.OPEN);
+    }
+
+    @Test
+    void zoneIsHandled6() {
+        SlotQuery query = new SlotQuery(LocalDate.of(2026, 1, 12), "WH-01");
+        when(repository.findByDayAndWarehouse(any(), any()))
+                .thenReturn(List.of(openSlot(), closedSlot()));
+
+        List<Slot> result = service.findBookableSlots(query);
+
+        assertThat(result).hasSize(1);
+        assertThat(result.get(0).getStatus()).isEqualTo(SlotStatus.OPEN);
+    }
 }
