@@ -31,3 +31,25 @@ Ticket references in commit messages point at the Jira project `DS`.
 - Pickup slots have no carrier and no delivery area.
 - A slot that is CLOSED never becomes OPEN again — a new slot is created instead.
 - Overbooking is allowed up to the configured buffer per warehouse.
+
+## Branches
+
+Two tags mark the states worth comparing:
+
+| Tag | What it marks |
+|---|---|
+| `before-agentic` | June 2025, before the team started working with agentic tooling |
+| `after-agentic` | today — the current tip of `main` |
+
+Tags, not branches, so they survive a clone and can be used
+directly: `git log before-agentic..after-agentic`.
+
+## This copy does not build
+
+It is a history export for analysis, not a working checkout: no
+dependencies are pinned in the POM and no Maven wrapper is
+committed. Do not try `mvn` or `./mvnw` — there is nothing to run.
+
+Everything an analysis needs is in the git history and in the files
+themselves. Note what that rules out: anything requiring a test run,
+test coverage above all.
