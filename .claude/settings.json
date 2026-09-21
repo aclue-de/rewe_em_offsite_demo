@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(cat:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+      "Bash(cut:*)",
+      "Bash(tr:*)",
+      "Bash(xargs:*)",
+      "Bash(date:*)",
+      "Bash(echo:*)",
+      "Write(*.md)",
+      "Write(*.html)",
+      "Edit(*.md)",
+      "Edit(*.html)"
+    ],
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git reset:*)",
+      "Bash(npm:*)",
+      "Bash(pip:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  }
+}
